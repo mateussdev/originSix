@@ -2,25 +2,26 @@
 const nav = document.querySelector('#header nav')
 const toggle = document.querySelectorAll('nav .toggle')
 
-for(const element of toggle) {
-  element.addEventListener('click', function() {
+for (const element of toggle) {
+  element.addEventListener('click', function () {
     nav.classList.toggle('show')
   })
 }
 
 // when clicking on a menu link, hide the menu
 const links = document.querySelectorAll('nav ul li a')
-for(const link of links) {
-  link.addEventListener('click', function() {
+for (const link of links) {
+  link.addEventListener('click', function () {
     nav.classList.remove('show')
   })
 }
 
 // adicionar sombra ao header quando der scroll na página
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
+// add shadow to header when scrolling page
+function changeHeaderWhenScroll() {
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight
 
-window.addEventListener('scroll', function() {
   if (window.scrollY >= navHeight) {
     // scroll é maior que a altura do header
     header.classList.add('scroll')
@@ -28,7 +29,7 @@ window.addEventListener('scroll', function() {
     // menor que a altura do header
     header.classList.remove('scroll')
   }
-})
+}
 
 // Swiper: testimonials carrosel slider
 const swiper = new Swiper('.swiper-container', {
@@ -41,6 +42,7 @@ const swiper = new Swiper('.swiper-container', {
 })
 
 // ScrollReveal: Mostrar elementos quando der scroll na página
+// ScrollReveal: Show elements when scrolling the page
 const scrollReveal = ScrollReveal({
   origin: 'top',
   distance: '30px',
@@ -54,15 +56,24 @@ scrollReveal.reveal(
   #services header, #services .card,
   #testimonials header, #testimonials .testimonials
   #contact .text, #contact .links,
-  footer .brand, footer .social`, 
-  { interval: 100})
+  footer .brand, footer .social`,
+  { interval: 100 }
+)
 
 // Botão voltar para o topo
-const backToTopButton = document.querySelector('.back-to-top')
-window.addEventListener('scroll', function() {
+// Back to top button
+function backToTop() {
+  const backToTopButton = document.querySelector('.back-to-top')
+
   if (window.scrollY >= 560) {
     backToTopButton.classList.add('show')
-  }else {
+  } else {
     backToTopButton.classList.remove('show')
   }
+}
+
+// When scroll
+window.addEventListener('scroll', function () {
+  changeHeaderWhenScroll()
+  backToTop()
 })
