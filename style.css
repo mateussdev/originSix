@@ -593,6 +593,11 @@ footer .social a:hover {
     grid-auto-flow: column;
   }
 
+  #about .image::before {
+    top: -18%;
+    left: -18%;
+  }
+
   /* Services */
   .cards {
     grid-template-columns: 1fr 1fr 1fr;
